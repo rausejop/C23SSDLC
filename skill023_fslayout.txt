@@ -1,0 +1,83 @@
+# SKILL: skill023_fslayout
+# ROLE: System Structurer
+# CONTEXT: Filesystem and Directory Governance | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Chaos in project scaffolding and docs locations.
+- Decision: Standardized filesystem hierarchy.
+- Mechanism: Directory templating and rules.
+- Consequence: Clean, predictable structure.
+
+---
+
+## [1] LAYOUT DIRECTIVES (SDD Optimized for AI Assistants)
+
+The directory structure must adhere to Spec-Driven Development (SDD) principles, ensuring maximum compatibility and context awareness for AI coding assistants (Google Antigravity, Claude Code, Cursor).
+
+### ASCII Directory Hierarchy
+```text
+project_root/
+├── .agents/
+│   └── skills/
+├── .knowledge/
+│   ├── legal/
+│   └── standards/
+├── assets/
+│   └── images/
+├── bin/
+├── docs/
+│   ├── P1_PREPARATION_AND_INITIATION/
+│   ├── P2_TECHNICAL_STRATEGY/
+│   ├── P3_CONCEPT_AND_STAKEHOLDER_NEEDS/
+│   ├── P4_SYSTEM_REQUIREMENTS_AND_SAFETY/
+│   ├── P5_ARCHITECTURE_AND_DESIGN/
+│   ├── PHASE_6_VERIFICATION_VALIDATION_AND_CLOSURE/
+│   └── PHASE_7_SCRUM_ARTIFACTS/
+├── readonly/
+│   └── Prompt.txt
+├── specs/
+│   ├── design.md
+│   ├── requirements.md
+│   └── tasks.md
+├── src/
+│   └── app.py
+└── test/
+```
+
+- **`.agents\` (AI Assistant Context)**:
+  - Stores agent instructions, context data, and project-specific skills.
+  - Skills MUST be created in the `.agents\skills\` directory.
+  - May contain supplementary configuration files (like `.cursorrules`) to standardize assistant behaviors.
+
+- **`.knowledge\` (Cold Knowledge Base / Reference)**:
+  - Repository for massive PDFs, full licenses (e.g. Apache2), or ISO standards.
+  - **CRITICAL RESTRICTION (Context Shield)**: AI Agents are STRICTLY FORBIDDEN from systematically indexing, reading, or processing this folder to conserve token context. Agents must ONLY access specific documents from this path when EXPLICITLY requested by a human user (e.g., "Analyze the file .knowledge/standards/ISO_27001.pdf").
+  - **Scaffolding Rule**: Upon project initialization, the Agent MUST automatically append `.knowledge/*` to `.cursorignore` and `.gitignore` to prevent host background indexing.
+
+- **`specs\` (Source of Truth / SDD Center)**:
+  - The core driver of development. AI agents rely on these files to know what to build and what state the project is in.
+  - Initial specifications must be created here in text format.
+  - These initial files are used to automatically formulate and update the active state files:
+    - `specs\design.md` (Architecture, decisions, data models)
+    - `specs\requirements.md` (Functional and non-functional requirements)
+    - `specs\tasks.md` (Current progress, checklists, pending autonomous tasks)
+
+- **`src\` (Source Code)**:
+  - Application source code. All executable logic must reside here.
+  - The main application entry point should specifically be `src\app.py`.
+
+- **`test\` (Automated Testing)**:
+  - All test files and testing suites must be created in the `test\` directory.
+  - In SDD, write tests that the AI can run independently to verify spec compliance.
+
+- **`assets\` (Static Resources)**:
+  - All static assets must be stored in the `assets\` directory (e.g., images go in `assets\images\`).
+
+- **`bin\` (Compiled Outputs)**:
+  - Compiled binaries, executables, and build artifacts. Typically excluded from AI context processing to conserve tokens.
+
+- **`docs\` (Phased Documentation & Governance)**:
+  - Phase structure is maintained for human readability and formal deliverables. See `## 5. DOCUMENTATION DELIVERABLES` for the required document generation rules.
+
+- **Readonly Folders**:
+  - `readonly/` and `Prompt.txt` MUST remain immutable.

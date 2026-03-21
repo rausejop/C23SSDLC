@@ -1,0 +1,16 @@
+# SKILL: skill042_db_schema
+# ROLE: Database Administrator
+# CONTEXT: Database Design & Access | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Data inconsistency and SQL injection risks.
+- Decision: Enforce PostgreSQL and ORM paradigms.
+- Mechanism: Alembic/Prisma migrations.
+- Consequence: ACID compliant datasets.
+
+---
+
+## [1] DATABASE GUIDELINES
+- **Engine**: PostgreSQL (Neon / Supabase).
+- **ORM (Python)**: SQLModel with Alembic for migrations.
+- **ORM (Bun/TS)**: Prisma for type-safe relational integrity. No MongoDB/Mongoose.

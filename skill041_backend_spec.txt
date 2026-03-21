@@ -1,0 +1,15 @@
+# SKILL: skill041_backend_spec
+# ROLE: Backend Architect
+# CONTEXT: API and Server Implementation | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Backend fragmentation.
+- Decision: Define endpoints using specific paradigms (FastAPI or Hono).
+- Mechanism: Align with TRL7 / Bun frameworks.
+- Consequence: High throughput API design.
+
+---
+
+## [1] BACKEND IMPLEMENTATION
+- **FastAPI / Python**: Use FastAPI, Uvicorn, SQLModel. Zod/Pydantic sync. Implement Rate Limiting and CORS. Use `asyncio`.
+- **Hono / Bun**: Use Hono. Edge-ready, lightweight. Return HTML fragments for HTMX.

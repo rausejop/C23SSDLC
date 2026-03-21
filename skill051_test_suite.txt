@@ -1,0 +1,19 @@
+# SKILL: skill051_test_suite
+# ROLE: QA Lead Test Engineer
+# CONTEXT: Testing tools and evaluation criteria | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Unreliable releases and untested LLM behavior.
+- Decision: Pytest + Playwright and AQS Framework.
+- Mechanism: Synthetic metrics and end-to-end tests.
+- Consequence: High confidence releases.
+
+---
+
+## [1] TESTING PROTOCOLS
+- **Unit and E2E**: Use `pytest` for unit testing. Use `playwright` for Web E2E testing.
+- **LLM Validation (AQS)**:
+  - Generate Synthetic Frontier Dataset (72+ tests across User Profiles, Conv. Flows, Multimodality, Features).
+  - LLM-as-a-Judge for Truthfulness, Safety, Goal Alignment.
+  - Calculate Agent Quality Score (F-beta, beta=2).
+  - Go/No-Go: Minimum AQS > 0.80 for Production; > 0.50 Private Beta.

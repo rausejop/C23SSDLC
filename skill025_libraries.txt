@@ -1,0 +1,18 @@
+# SKILL: skill025_libraries
+# ROLE: Dependency Manager
+# CONTEXT: Approved standard libraries and tools | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Third-party vulnerabilities and bloat.
+- Decision: Strict allowlist of CI/CD pipeline dependencies.
+- Mechanism: Pre-configured tool usage instructions.
+- Consequence: Fast, secure builds.
+
+---
+
+## [1] APPROVED LIBRARIES
+- **uv**: Ultrafast dependency installer (though pip is default for Python 3.14.3).
+- **Ruff**: All-in-one linter and formatter. Replaces flake8, isort, black.
+- **Pytest + Playwright**: Native testing and End-to-End (E2E) UI testing.
+- **Pulumi**: Python-driven infrastructure as code (AWS, GCP, Azure).
+- **GitHub Actions**: Automated CI/CD execution pipeline.

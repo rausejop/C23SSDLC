@@ -1,0 +1,70 @@
+# SKILL: skill012_security
+# ROLE: SecOps & Integrity Guard
+# CONTEXT: Security Validations & Compliance | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Vulnerabilities and insecure deployment.
+- Decision: Security-by-Design and mandatory GRC compliance.
+- Mechanism: Pre-flight checks and continuous releases audit.
+- Consequence: Mitigated OWASP risks and secure pipelines.
+
+---
+
+## [1] SECURITY CONSTRAINTS
+- **Governance & Compliance Frameworks**: The architecture and codebase MUST comply with the following standards:
+  - **NIST CSF 2.0**: Map technical patterns to the Govern, Identify, Protect, Detect, Respond, and Recover core functions.
+  - **NIST SP 800-53 Rev. 5**: Assure implementation of Security and Privacy Controls for Information Systems and Organizations. Only when requested, retrieve the full text from: `https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf`
+  - **ISO 27001:2022**: Implement robust information security management controls (ISMS) across all layers.
+  - **Esquema Nacional de Seguridad (ENS)**: Ensure strict adherence to security principles and minimum requirements for data handling and interoperability. Only when requested, retrieve the full text from: `https://www.boe.es/eli/es/rd/2022/05/03/311`
+  - **Directiva NIS2**: Design for supply chain security, zero-trust access, and systematic incident response for critical entities. Only when requested, retrieve the full text from: `https://www.boe.es/buscar/doc.php?id=DOUE-L-2022-81963`
+  - **Anteproyecto de Ley de Coordinación y Gobernanza de la Ciberseguridad**: Establishes that entities complying with the ENS can exhibit their Declaration or Certificate of Conformity to demonstrate compliance with NIS2 requirements. Only when requested, retrieve the full text from: `https://www.interior.gob.es/opencms/pdf/servicios-al-ciudadano/participacion-ciudadana/Participacion-publica-en-proyectos-normativos/Audiencia-e-informacion-publica/01_2025_Anteproyecto_ley_coordinacion_gobernanza_ciberseguridad.pdf`
+  - **ISO/IEC 62443-4-2**: Enforce technical security capability levels for Industrial Automation and Control Systems (IACS) if applicable.
+- **Reference Pointer (Context Shield)**: To resolve complex compliance ambiguities, the agent must explicitly read the full documentation in `.knowledge/standards/` ONLY when requested.
+- **Web Security**: Mitigate OWASP Top 10 2025.
+- **LLM Security**: Mitigate OWASP Top 10 for LLM Applications 2025 (Prompt Injection LLM01, Excessive Agency LLM06, Vector Weaknesses LLM08).
+- **Hardcoded Secrets**: Under no circumstances shall API keys or credentials be hardcoded. Use environment variables.
+- **Vulnerability Checks**: Prior to outputting code, verify no Prompt Injection or Windows-based Path Traversal exists.
+
+
+## [2] DATA MODELING & INTEROPERABILITY (STIX 2.1 & CACAO v2.0)
+- **Database Object Structuring (STIX 2.1)**: The definition and internal structure of objects within the database schema MUST be natively compatible with STIX 2.1 (Structured Threat Information Expression).
+- **Security Playbooks (CACAO v2.0)**: If generating, structuring, or executing security playbooks for response actions, the models MUST comply with the OASIS CACAO v2.0 specification.
+- **Reference Pointers (Context Shield)**: Retrieve the full specification text ONLY when strictly necessary for modeling or execution:
+  - For STIX 2.1 (Schemas): `https://docs.oasis-open.org/cti/stix/v2.1/cs02/stix-v2.1-cs02.html`
+  - For CACAO v2.0 (Playbooks): `https://docs.oasis-open.org/cacao/security-playbooks/v2.0/security-playbooks-v2.0.html`
+
+## [3] AUTOMATED CYBERSECURITY AUDIT
+- For every new release, conduct Continuous Release Audit on delta differences.
+- **Python Code Security (MANDATORY)**: You MUST systematically audit all Python code utilizing:
+  1. Indentation & Style Sanity (`tabnanny`) to prevent ambiguity.
+  2. AST-Based Security Linting (`ast`) to block `eval()`, `exec()`.
+  3. Bytecode Disassembly Analysis (`dis`) to check control flows.
+  4. Type Integrity Check (`compile`) via `PyCF_ONLY_AST`.
+  5. ZIP Safety (`zipfile`) against "Zip Slip".
+- **OWASP Compliance Audit (OPTIONAL)**: Mapping the architecture and vulnerabilities to OWASP 2025 and CWE is strictly OPTIONAL and should only be performed if expressly requested.
+  - **Reference Pointers (Context Shield)**: If an OWASP audit is required, retrieve the reference texts ONLY from:
+    - Standard Web Apps: `https://owasp.org/Top10/2025/`
+    - LLM Applications: `https://owasp.org/www-project-top-10-for-large-language-model-applications/`
+- Generate Proof of Concept (PoC) for 'HIGH'/'CRITICAL' issues.
+- Provide remediation using SOLID and explicit typing standards.
+- Log outputs in `/docs/P6_VERIFICATION/` as JSON.
+
+## [4] STREAMLIT SECURITY HARDENING
+- **Secret Management (st.secrets)**: NEVER save passwords or API keys in plaintext. Use `.streamlit/secrets.toml` locally and ENSURE it is tracked in `.gitignore`. For production, use environment variables or native Cloud Secrets panels.
+- **Robust Authentication**: Implement `streamlit-authenticator` utilizing bcrypt for password hashing and secure cookies for session persistence, or utilize an upstream SSO.
+- **Network & Headers (Reverse Proxy)**: Port 8501 is plaintext HTTP. Do not expose it to the internet directly. Deploy Streamlit behind a Reverse Proxy (Nginx/Apache) for SSL/TLS termination (HTTPS) and enforce security headers: Content Security Policy (CSP), X-Frame-Options, and X-Content-Type-Options.
+- **Input Validation (Injection)**: Sanitization is mandatory. Keep rigorous control over `st.text_input` and `st.file_uploader`. NEVER pass unfiltered inputs to `os.system()` or `subprocess` to prevent Command Injection.
+- **HTML & XSS (Security Paradox)**: `st.write` escapes HTML by default. Do NOT use `unsafe_allow_html=True` unless strictly necessary and perfectly sanitized to avoid Cross-Site Scripting (XSS).
+- **Sandboxing**: Protect the host environment. Run the application in a Docker container utilizing a non-root user and restrict physical resources constraints.
+- **Global Config (`config.toml`) Tuning**:
+  - `browser.gatherUsageStats = false` (Privacy: block Streamlit telemetry).
+  - `server.enableCORS = false` (Block cross-domain requests unless strictly required).
+  - `server.enableXsrfProtection = true` (Defense against Cross-Site Request Forgery).
+  - `server.maxUploadSize = 200` (or less) to prevent memory RAM exhaustion (DoS attacks) via `st.file_uploader`.
+
+  ## [5] SECUWARE DNIWALLET
+- **Implementation Status**: Authentication using SECUWARE DNIWALLET is OPTIONAL. It must ONLY be implemented if expressly indicated by the user.
+- Use PKCE, nonce with >= 32 bytes entropy.
+- GDPR Data Minimization (SD-JWT, SHA-256 for Document hashes).
+- Backend Webhook callbacks validated by IP-Allowlist and JWKS.
+- No manual bypass for Biometric Failure (Error LOG-11-BIO).

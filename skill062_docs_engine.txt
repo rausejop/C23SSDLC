@@ -1,0 +1,81 @@
+# SKILL: skill061_docs_engine
+# ROLE: Technical Writer & Modeler
+# CONTEXT: ISO/IEEE Documentation Generation | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Missing architectural trace and standard compliance.
+- Decision: Produce ISO 15288/29148 compatible doc formats.
+- Mechanism: Predefined templates and continuous updates.
+- Consequence: Comprehensive traceable system requirements.
+
+---
+
+## [1] DOCUMENTATION DELIVERABLES
+- Automatically generate the P1-P6 architecture docs when triggered.
+- Use exact templates from SKILLS_C23SF (e.g. ConOps 29148 Annex A, StRS, SyRS, SRS).
+- **ADR Format (P5_DOC03)**: ID, Title, Status, Context, Decision, Consequences, Compliance Traceability.
+- **Scrum Artifacts**: Manage Product Backlog, Sprint Backlog, DoD, Burn-down chart, Sprint Review Notes, Retrospective, Increment Manifest in Phase 7.
+- **Interdependent Changes**: Iteratively update interconnected Px_DOCxx files upon requirements change.
+
+---
+
+## [2] DOCUMENTATION DELIVERABLES
+
+From the following documentation deliverables,
+generate those designated with [X] and ignore marked as [ ].
+Perform an automatic generation, update and maintenance of the following markdown files under "docs" directory.
+Upon any modification to a requirement within a Px_DOCxx file, the system shall identify and enumerate all interdependent documents
+and Scrum artifacts affected by said change to ensure cross-functional alignment.
+
+REQ5.01 - [X] Generate Directory "P1_PREPARATION_AND_INITIATION/" (PRINCE2 & 15288 Agreement)
+          REQ5.01.01 - [X] Generate file "P1_DOC01_BC_Business_Case_P2_CH4.md"
+          REQ5.01.02 - [X] Generate file "P1_DOC02_ACQ_Acquisition_Agreement_15288_6.1.md"
+          REQ5.01.03 - [X] Generate file "P1_DOC03_PID_Project_Initiation_Documentation_P2_CH16.md"
+REQ5.02 - [X] Generate Directory "P2_TECHNICAL_STRATEGY/" (IEEE 15288.1 Management)"
+          REQ5.02.01 - [X] Generate file "P2_DOC01_SEMP_Systems_Engineering_Management_Plan_15288.1_5.1.md"
+          REQ5.02.02 - [X] Generate file "P2_DOC02_RMP_Risk_Management_Plan_15288_6.3.4.md"
+          REQ5.02.03 - [X] Generate file "P2_DOC03_CMP_Configuration_Management_Plan_15288_6.3.5.md"
+REQ5.03 - [X] Generate Directory "P3_CONCEPT_AND_STAKEHOLDER_NEEDS/" (ISO 29148 & 15288 Technical)
+          REQ5.03.01 - [X] Generate file "P3_DOC01_ConOps_Concept_of_Operations_29148_Annex_A.md" Concept of Operations (CONOPS)
+                           - Purpose: This is an organization-level document that describes the leadership's intent and assumptions regarding how the business will operate.
+                           - Role: It serves as the foundation for eliciting requirements and understanding the project's background.
+          REQ5.03.02 - [X] Generate file "P3_DOC02_OpsCon_Operational_Concept_29148_Annex_B.md"
+          REQ5.03.03 - [X] Generate file "P3_DOC03_StRS_Stakeholder_Requirements_Spec_15288_6.4.2.md" Stakeholder Requirements Specification (StRS)
+                           - Purpose: Describes the organization's motivation for developing the system and defines the high-level processes and policies it must follow.
+                           - Role: It represents requirements at the business management level.
+REQ5.04 - [X] Generate Directory "P4_SYSTEM_REQUIREMENTS_AND_SAFETY/" (ISO 29148 & Defense)
+          REQ5.04.01 - [X] Generate file "P4_DOC01_SyRS_System_Requirements_Spec_29148_9.2.md" System Requirements Specification (SyRS)
+                           - Purpose: Specifies the technical requirements for the system as a whole, including its interactions with the environment, performance parameters, and constraints.
+                           - Role: Acts as the definitive technical "bridge" between the acquirer’s needs and the builders' technical tasks.
+          REQ5.04.02 - [X] Generate file "P4_DOC02_SRS_Software_Requirements_Spec_29148.md" Software Requirements Specification (SRS)
+                           - Purpose: If the system includes software elements, the SRS defines the specific functions, interfaces, and quality attributes (like security and portability) for those software components.
+                           - Role: Represents the lowest level of requirements engineering before design and implementation.
+          REQ5.04.03 - [X] Generate file "P4_DOC03_SSP_System_Safety_Program_Plan_15288.1_7.1.md"
+          REQ5.04.04 - [X] Generate file "P4_DOC04_SEP_Security_Engineering_Plan_15288.1_7.2.md"
+REQ5.05 - [X] Generate Directory "P5_ARCHITECTURE_AND_DESIGN/" (ISO 15288 Realization)
+          REQ5.05.01 - [X] Generate file "P5_DOC01_SAD_System_Architecture_Description_15288_6.4.4.md"
+          REQ5.05.02 - [X] Generate file "P5_DOC02_DDD_Design_Definition_Document_15288_6.4.5.md"
+          REQ5.05.03 - [X] Generate file "P5_DOC03_ADR_Architectural_Decision_Records.md" Architectural Decisión Records (ADR)
+                           - Purpose: To provide a unified, chronological ledger of all significant technical decisions, categorized by Operating System, Language Version, Framework, and Application Type.
+                           - Role: It serves as the authoritative justification for the selected architectural patterns, documenting the context, consequences, and compliance with the Security by Design principles. Every ADR must explicitly reference the mitigation of specific risks (e.g., OWASP LLM01) and any trade-offs necessitated by the experimental nature of the language stack.
+                           - Format:
+                             * ADR ID: Sequential identifier (e.g., ADR-001, ADR-002).
+                             * Title: Clear, concise designation of the architectural decisión record.
+                             * Status: Current lifecycle state (Proposed, Accepted, Superseded, or Deprecated).
+                             * Context: The technical or business problem, including environment constraints (Windows 11, Intel64, 8 GB Avail. RAM).
+                             * Decision: The specific technical path chosen, justified by the "Security by Design" framework.
+                             * Consequences: The resulting impact, including potential technical debt, operational changes, or residual risks.
+                             * Compliance Traceability: Direct mapping to ISO 27001, ISA/IEC 62443, or OWASP mitigation strategies.
+REQ5.06 - [X] Generate Directory "PHASE_6_VERIFICATION_VALIDATION_AND_CLOSURE/"
+          REQ5.06.01 - [X] Generate file "P6_DOC01_SVP_System_Verification_Plan_15288_6.4.9.md"
+          REQ5.06.02 - [X] Generate file "P6_DOC02_VaP_System_Validation_Plan_15288_6.4.11.md"
+          REQ5.06.03 - [X] Generate file "P6_DOC03_EOP_End_of_Project_Report_P2_CH19.md"
+REQ5.07 - [X] Generate Directory "PHASE_7_SCRUM_ARTIFACTS/"
+          REQ5.07.01 - [X] Generate file "P7_scrum01_product-backlog.md" Includes ID, User Story, Priority, Estimate (Story Points), Status; serves as the master list of all functional and non-functional requirements managed by the Product Owner.
+          REQ5.07.02 - [X] Generate file "P7_scrum02_sprint-backlog.md" Includes Sprint Goal, Task Breakdown, Assigned Member, Effort Remaining, Status; contains the subset of items selected for the current Sprint along with the plan for delivery.
+          REQ5.07.03 - [X] Generate file "P7_scrum03_definition-of-done.md" Includes Coding Standards, Testing Requirements (Unit/Integration), Review Process, Documentation Checklist; defines the shared criteria that a product increment must meet to be considered "Done."
+          REQ5.07.04 - [X] Generate file "P7_scrum04_sprint-burn-down.md" Includes Date, Total Effort Remaining, Ideal Trend Line; provides a visual representation of work remaining versus time in the sprint to track progress toward the Sprint Goal.
+          REQ5.07.05 - [X] Generate file "P7_scrum05_sprint-review-notes.md" Includes Demo Summary, Stakeholder Feedback, Market Changes, Backlog Adjustments; documents the outcome of the review meeting and any necessary pivots for the Product Backlog.
+          REQ5.07.06 - [X] Generate file "P7_scrum06_sprint-retrospective.md" Includes What Went Well, What Could Be Improved, Action Items for Next Sprint; captures the team's internal plan for improving processes, tools, and relationships.
+          REQ5.07.07 - [X] Generate file "P7_scrum07_increment-manifest.md" Includes Version Number, Features Released, Known Issues, Deployment Instructions; describes the "Potentially Releasable" package produced during the Sprint.
+

@@ -1,0 +1,18 @@
+# SKILL: skill052_os_tuning
+# ROLE: OS & Operations Ninja
+# CONTEXT: System boundaries and OS specific behavior | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Out-of-memory errors on local deployments.
+- Decision: Monitor system resources natively.
+- Mechanism: Check threshold limits.
+- Consequence: Stable system operation.
+
+---
+
+## [1] ENVIRONMENT PARAMETERS
+- **Operative System**: Microsoft Windows 11 [10.0.26200.7840].
+- **Processor**: Intel64 Family 6 Model 140.
+- **Memory**: Base 16 GB, Available 8 GB.
+- **Resource Monitoring**: Enforce memory profiling for model inference. Trigger threshold alerts if consumption > 70% of 8 GB availability.
+- **Build Cmd**: Auto-generate `build.cmd` for zero-touch install on Windows.

@@ -1,0 +1,15 @@
+# SKILL: skill011_license
+# ROLE: Legal & GRC
+# CONTEXT: Licensing & Open Source Compliance | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Unclear licensing leads to legal risks.
+- Decision: Enforce Apache License 2.0.
+- Mechanism: Validate license presence in all outputs.
+- Consequence: Flexible open source and commercial use.
+
+---
+
+## [1] LICENSING DIRECTIVES
+- **Standard License**: Apache License 2.0 (Required for both Open Source and Commercial flexibility).
+- **Reference Pointer (Context Shield)**: For the full explicit text of the license or to resolve complex legal disputes, the agent must read the official source at `https://www.apache.org/licenses/LICENSE-2.0.txt` ONLY when explicitly commanded.

@@ -1,0 +1,25 @@
+# SKILL: skill024_tech_stack
+# ROLE: Stack Specialist
+# CONTEXT: Technologies Core Framework | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Inconsistent language and framework choices.
+- Decision: Python 3.14.3 and selective Bun/NextJS/FastAPI setups.
+- Mechanism: Strictly mandate assigned frameworks via properties.
+- Consequence: Uniform toolchain and robust performance.
+
+---
+
+## [1] CORE FRAMEWORK (Python)
+- **Language**: Python 3.14.3 (PEP: 745).
+- **Dependency Manager**: `pip` + `requirements.txt`.
+- **Async Environment**: Native `asyncio` for I/O and Model inference.
+- **Logging**: Structured JSON via `loguru`.
+
+## [2] WEB FRAMEWORKS (TRL 7 & BUN)
+- **TRL 7**: Next.js & TailwindCSS (Frontend). FastAPI, Uvicorn, SQLModel (Backend). Database PostgreSQL.
+- **BUN Framework**: 
+  - Runtime: Bun.
+  - Backend: Hono.
+  - Frontend: HTMX (HTML fragments over JSON) + Tailwind CSS (Vite PostCSS).
+  - DB/ORM: Prisma with PostgreSQL.

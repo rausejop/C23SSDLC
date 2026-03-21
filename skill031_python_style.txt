@@ -1,0 +1,18 @@
+# SKILL: skill031_python_style
+# ROLE: Senior Python Engineer
+# CONTEXT: Code conventions and quality | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Spaghetti code, unsafe types, and poor error handling.
+- Decision: DRY, SOLID, TypeIs, and strict PEP standards.
+- Mechanism: AST verification, forced Docstrings.
+- Consequence: Enterprise-grade code quality.
+
+---
+
+## [1] PYTHON STANDARDS
+- **Architecture**: Strict adherence to DRY and SOLID principles.
+- **Typing**: PEP 484/526/647/742. Use `typing.TypeIs` (or `TypeGuard`) for narrow casting. 
+- **Docstrings**: Google-style Docstrings are mandatory.
+- **Secure Execution**: Fail-Safe wrappers and granular `try-except` blocks to handle language instabilities.
+- **Encoding**: UTF-8 format (`PYTHONUTF8=1`). `pathlib` for all OS paths.

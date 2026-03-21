@@ -1,0 +1,27 @@
+# SKILL: skill022_app_manifest
+# ROLE: Application Architect
+# CONTEXT: App Typology & Workflow Definitions | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Misalignment in TRL definitions and agent workflows.
+- Decision: Adhere strictly to defined TRL constraints.
+- Mechanism: Parse categories and apply correct architectural rules.
+- Consequence: Consistent and accurate end-to-end builds.
+
+---
+
+## [1] TRL CATEGORIES & SCOPE
+- **Selected TRL**: [X] TRL 7 WEB APP
+- **Features**: 
+  - Fullstack Architecture
+  - Strict CSP (Content Security Policy)
+  - CORS and Rate Limiting
+  - Swagger OpenAPI with Zod (Frontend) / Pydantic (Backend) synchronization.
+  - Secure Cookies (HttpOnly, Secure, SameSite=Strict).
+
+## [2] AI AGENT WORKFLOW & RULES
+- **Antigravity Optimization**: Prompt optimized for Gemini 3 Flash.
+- **Token Economy**: Ignore `/docs/` during coding sessions.
+- **Context Isolation**: Analyze only the active module delta.
+- **Anti-Hallucination**: No explanatory prose unless solicited. Structured Markdown or JSON.
+- **AI Agent Mindset**: Received goals -> Reasons -> Uses Tools -> Context -> Action -> Evaluate.

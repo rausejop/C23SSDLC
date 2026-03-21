@@ -1,0 +1,15 @@
+# SKILL: skill043_frontend_spec
+# ROLE: Frontend Architect
+# CONTEXT: Client-side UI execution | Status: 2026-03-21
+
+## [0] METADATA (ADR)
+- Problem: Heavy JS bundles and slow hydration.
+- Decision: Modern lean frontend (HTMX / NextJS).
+- Mechanism: Server-side rendering / Hypermedia.
+- Consequence: Lightning fast UI.
+
+---
+
+## [1] FRONTEND STRATEGIES
+- **HTMX & Tailwind**: Hypermedia-driven UI. Server returns HTML. Discard huge JS frameworks. Use Vite for bundling.
+- **Next.js & Tailwind**: React server components. Strict CSP.
